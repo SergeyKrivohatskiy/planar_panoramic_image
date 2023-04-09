@@ -14,3 +14,5 @@ Usage: `main.py IMAGE_DIRECTORY_PATH OUTPUT_PATH`
 python -m pip install -r requirements.txt
 python main.py test_images/1 test_images/result_1.png
 ```
+
+![build badge](https://github.com/SergeyKrivohatskiy/planar_panoramic_image/actions/workflows/python-app.yml/badge.svg)
