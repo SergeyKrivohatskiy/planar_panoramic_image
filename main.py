@@ -18,9 +18,6 @@ def _write_rgb_image(img: RgbImg, output_path: str) -> bool:
     return cv2.imwrite(output_path, img_bgr)
 
 
-@click.command()
-@click.argument('directory_path', type=click.Path(exists=True, dir_okay=True, file_okay=False, readable=True))
-@click.argument('output_path', type=click.Path(exists=False, dir_okay=False, writable=True))
 def main(directory_path: str, output_path: str):
     imgs = _read_rgb_images(directory_path)
     panoramic_image = build_panoramic_image(imgs)
@@ -29,5 +26,15 @@ def main(directory_path: str, output_path: str):
         raise click.Abort()
 
 
+@click.command()
+@click.argument('directory_path',
+                type=click.Path(exists=True, dir_okay=True,
+                                file_okay=False, readable=True))
+@click.argument('output_path',
+                type=click.Path(exists=False, dir_okay=False, writable=True))
+def _main_command(directory_path: str, output_path: str):
+    main(directory_path, output_path)
+
+
 if __name__ == '__main__':
-    main()
+    _main_command()

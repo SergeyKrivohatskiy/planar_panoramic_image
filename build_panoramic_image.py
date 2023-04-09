@@ -36,7 +36,7 @@ def _find_matches(points1: Point2dList, descriptors1: DescriptorsList,
         Tuple[Point2dList, Point2dList]:
     matches = _snn_matching(descriptors1, descriptors2)
     return np.array([points1[m.queryIdx] for m in matches]), \
-           np.array([points2[m.trainIdx] for m in matches])
+        np.array([points2[m.trainIdx] for m in matches])
 
 
 def _find_homography(points1: Point2dList, points2: Point2dList) -> \
@@ -66,7 +66,7 @@ def _get_transformed_img_bbox(img: RgbImg, hmat: HMat) -> BBox:
     corners = np.float32([[0, 0], [0, h], [w, h], [w, 0]]).reshape(-1, 1, 2)
     corners = cv2.perspectiveTransform(corners, hmat).reshape(-1, 2)
     return np.min(corners[:, 0]), np.min(corners[:, 1]), \
-           np.max(corners[:, 0]), np.max(corners[:, 1])
+        np.max(corners[:, 0]), np.max(corners[:, 1])
 
 
 def _max_panoramic_image_bbox(first_image: RgbImg) -> BBox:
